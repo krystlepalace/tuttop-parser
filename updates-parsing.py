@@ -22,5 +22,4 @@ for link in game_titles:
 
 # выводим результаты
 for name, link in result.items():
-    print(name + ':')
-    print('\t' + link)
+    print(f'{name}:\n\t{link}\n')
