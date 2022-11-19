@@ -4,3 +4,4 @@ docopt==0.6.2
 aiogram
 requests
 beautifulsoup4
+lxml
