@@ -17,3 +17,6 @@ async def send_updates(message: Message):
         await bot.send_message(chat_id=message.from_user.id, text=MSG)
         sleeping_time = 24 - (now.hour - 6)
         await time.sleep(sleeping_time)
+
+if __name__ == '__main__':
+    executor.start_polling(dp)
