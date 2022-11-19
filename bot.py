@@ -3,7 +3,6 @@ from aiogram.types import Message
 from parsing import get_updates
 import asyncio
 from datetime import datetime
-import time
 
 
 bot = Bot(token='')
@@ -16,7 +15,7 @@ async def send_updates(message: Message):
         MSG = '\n'.join(f'{name} — {link}' for name, link in get_updates().items())
         await bot.send_message(chat_id=message.from_user.id, text=MSG)
         sleeping_time = 24 - (now.hour - 6)
-        await time.sleep(sleeping_time)
+        await asyncio.sleep(delay=sleeping_time)
 
 if __name__ == '__main__':
     executor.start_polling(dp)
