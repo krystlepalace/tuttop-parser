@@ -5,7 +5,7 @@ from datetime import datetime
 import asyncio
 
 
-bot = Bot(token='')
+bot = Bot(token='5804487703:AAExSwZGSWAQB2g1ty2ar03Qez1kdAMUSdk')
 dp = Dispatcher(bot=bot)
 
 @dp.message_handler(commands=['start'])
