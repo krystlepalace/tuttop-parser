@@ -12,8 +12,8 @@ dp = Dispatcher(bot=bot)
 
 @dp.message_handler(commands=['start'])
 async def send_updates(message: Message):
-    if start == False:
-        start = True
+    if await start == False:
+        await start = True
         while True:
             now = datetime.now()
             MSG = '\n\n'.join(f'{name} — {link}' for name, link in get_updates().items())
