@@ -7,17 +7,28 @@ import asyncio
 
 bot = Bot(token='')
 dp = Dispatcher(bot=bot)
+started = False
 
 @dp.message_handler(commands=['start'])
 async def send_updates(message: Message):
-    while True:
-        now = datetime.now()
-        MSG = '\n\n'.join(f'{name} — {link}' for name, link in get_updates().items())
-        await message.reply(text='Последние обновления:')
-        await message.answer(text=MSG)
+    if not started:
+        started = True
+        while True:
+            now = datetime.now()
+            MSG = '\n\n'.join(f'{name} — {link}' for name, link in get_updates().items())
+            await message.reply(text='Последние обновления:')
+            await message.answer(text=MSG)
 
-        sleeping_time = (3600 * (24 - (now.hour - 6))) if now.hour >= 6 else (3600 * (24 + (6 - now.hour)))
-        await asyncio.sleep(delay=sleeping_time)
+            sleeping_time = (3600 * (24 - (now.hour - 6))) if now.hour >= 6 else (3600 * (24 + (6 - now.hour)))
+            await asyncio.sleep(delay=sleeping_time)
+    else:
+        await message.reply(text='Помощь по боту:\n/start - Помощь\n/show - Показать обновления')
+
+@dp.message_handler(commands=['show'])
+async def show_updates(message: Message):
+    MSG = '\n\n'.join(f'{name} — {link}' for name, link in get_updates().items())
+    await message.reply(text='Последние обновления:')
+    await message.answer(text=MSG)
 
 if __name__ == '__main__':
     executor.start_polling(dp)
