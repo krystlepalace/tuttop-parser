@@ -7,6 +7,7 @@ import asyncio
 
 bot = Bot(token='5804487703:AAExSwZGSWAQB2g1ty2ar03Qez1kdAMUSdk')
 dp = Dispatcher(bot=bot)
+global start
 start = False
 
 @dp.message_handler(commands=['start'])
