@@ -5,14 +5,14 @@ from datetime import datetime
 import asyncio
 
 
-bot = Bot(token='5804487703:AAExSwZGSWAQB2g1ty2ar03Qez1kdAMUSdk')
-dp = Dispatcher(bot=bot)
 global start
 start = False
+bot = Bot(token='5804487703:AAExSwZGSWAQB2g1ty2ar03Qez1kdAMUSdk')
+dp = Dispatcher(bot=bot)
 
 @dp.message_handler(commands=['start'])
 async def send_updates(message: Message):
-    if not start:
+    if start == False:
         start = True
         while True:
             now = datetime.now()
