@@ -7,12 +7,12 @@ import asyncio
 
 bot = Bot(token='5804487703:AAExSwZGSWAQB2g1ty2ar03Qez1kdAMUSdk')
 dp = Dispatcher(bot=bot)
-started = False
+start = False
 
 @dp.message_handler(commands=['start'])
 async def send_updates(message: Message):
-    if not started:
-        started = True
+    if not start:
+        start = True
         while True:
             now = datetime.now()
             MSG = '\n\n'.join(f'{name} — {link}' for name, link in get_updates().items())
